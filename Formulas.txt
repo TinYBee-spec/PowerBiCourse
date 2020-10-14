@@ -1,0 +1,19 @@
+TotalRevenue = Sumx('AdventureWorks-Sales','AdventureWorks-Sales'[OrderQuantity]*RELATED('AdventureWorks-Products'[ProductPrice]))
+
+
+TotalCost = SumX( 'AdventureWorks-Sales','AdventureWorks-Sales'[OrderQuantity]   *   RELATED('AdventureWorks-Products'[ProductCost])  )
+
+
+TotalOrders = DISTINCTCOUNT('AdventureWorks-Sales'[OrderNumber])
+
+
+%Profit = ([TotalRevenue]-[TotalCost])/[TotalCost]
+
+
+TotalProfit = [TotalRevenue]-[TotalCost]
+
+
+Prev Month Revenue = CALCULATE([TotalRevenue], DATEADD('AdventureWorks-Calendar'[Date],-1,MONTH))
+
+
+Prev Month Profit = CALCULATE([TotalProfit],DATEADD('AdventureWorks-Calendar'[Date],-1,MONTH))
